@@ -4,16 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                node('Node JS 20') {
-                    sh 'npm install'
-                }
+                sh 'npm install'
             }
         }
         stage("Run App") {
             steps {
-                node('Node JS 20') {
-                    sh 'node app.js'
-                }
+                sh 'node app.js'
             }
         }
     }
