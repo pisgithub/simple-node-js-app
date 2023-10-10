@@ -1,19 +1,14 @@
 pipeline {
     agent any
     stages{
-        stage('Build and Run Docker Container') {
-            steps {
-                script {
-                    // Build the Docker image
-                    docker.build('simple-node-app', '.')
-
-                    // Run the Docker container
-                    docker.image('simple-node-app').withRun('-p 3000:3000') {
-                        // Execute commands within the running container if needed
-                        sh 'npm install'
-                        sh 'npm start'
-                    }
-                }
+        stage("Build & Test") {
+            steps{
+                sh "npm install"
+            }
+        }
+        stage("Run App") {
+            steps{
+                sh "node app.js"
             }
         }
     }
