@@ -1,14 +1,18 @@
 pipeline {
     agent any
-    stages{
-        stage("Build & Test") {
-            steps{
-                sh "npm install"
+    stages {
+        stage('Build') {
+            steps {
+                node('Node JS 20') {
+                    sh 'npm install'
+                }
             }
         }
         stage("Run App") {
-            steps{
-                sh "node app.js"
+            steps {
+                node('Node JS 20') {
+                    sh 'node app.js'
+                }
             }
         }
     }
